@@ -56,3 +56,25 @@ for i in range(len(input_raw_file_paths)):
     documents = SimpleDirectoryReader(input_files=[input_raw_file_dir + "/" + input_raw_file_paths[i]],
                                       file_extractor=file_extractor).load_data()
     output_docs.append(documents)
+
+print(f"Number of files parsed: {len(output_docs)}")
+# print(output_docs)
+
+output_docs_content = []
+
+for i in range(len(output_docs)):
+    all_docs = ""
+    for j in range(len(output_docs[i])):
+        all_docs += output_docs[i][j].text  # + "\n\n"
+
+    output_docs_content.append(all_docs)
+
+    output_parsed_file_path = output_raw_file_dir + "/" + input_raw_file_paths[i].split(".")[0] + "_parsed" + ".txt"
+
+    f = open(output_parsed_file_path, "w")
+    f.write(all_docs)
+    f.close()
+
+all_docs = ""
+for i in range(len(documents)):
+    all_docs += documents[i].text + "\n\n"
