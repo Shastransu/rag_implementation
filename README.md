@@ -57,3 +57,31 @@ Ensure the following prerequisites are installed:
     ```bash
     input_raw_file_dir = "./input_docs"  # Directory containing documents
     output_raw_file_dir = "./parsed_docs"  # Directory to store markdown files
+  
+Here’s an improved version for your `README.md` file:
+
+---
+
+## **2. rag_pinecone.ipynb**
+
+### **Purpose**
+This notebook is responsible for processing parsed markdown files, generating embeddings, and uploading them to a Pinecone vector database. It enables efficient retrieval-augmented generation (RAG) by structuring and storing knowledge in a vectorized format.
+
+### **Key Features**
+- **Reads parsed markdown files** from the output directory of `parsing_kb_rag.ipynb`.
+- **Splits content into smaller, meaningful chunks** optimized for embedding and retrieval.
+- **Generates embeddings** using the `text-embedding-ada-002` model.
+- **Uploads embeddings to a Pinecone database** under a specified namespace for organized storage.
+
+### **Setup Instructions**
+1. **Specify the input directory** containing parsed markdown files:
+    ```python
+    input_parsed_file_dir = "./parsed_docs"  # Directory with parsed markdown files
+    ```
+2. **Authenticate with Pinecone** using admin credentials.
+3. **Create an index in Pinecone** with the following configuration:
+    - **Index Name:** Choose a name relevant to your project (e.g., `as per the need`).
+    - **Embedding Model:** `text-embedding-ada-002`.
+    - **Namespace:** Assign a namespace for structured storage (e.g., `as per the need`).
+
+This setup ensures that your markdown content is effectively chunked, vectorized, and indexed for seamless retrieval.
