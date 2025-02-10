@@ -58,8 +58,6 @@ Ensure the following prerequisites are installed:
     input_raw_file_dir = "./input_docs"  # Directory containing documents
     output_raw_file_dir = "./parsed_docs"  # Directory to store markdown files
   
-Here’s an improved version for your `README.md` file:
-
 ---
 
 ## **2. rag_pinecone.ipynb**
@@ -85,3 +83,32 @@ This notebook is responsible for processing parsed markdown files, generating em
     - **Namespace:** Assign a namespace for structured storage (e.g., `as per the need`).
 
 This setup ensures that your markdown content is effectively chunked, vectorized, and indexed for seamless retrieval.
+
+---
+## **3. get_value_rag.ipynb**
+
+### **Purpose**
+This notebook is designed to query the Pinecone database and generate responses based on retrieved document chunks. It serves as a testing and evaluation tool for retrieval-augmented generation (RAG) performance.
+
+### **Key Features**
+- **Retrieves relevant document chunks** from the Pinecone vector database using similarity search.
+- **Generates responses using the ChatOpenAI model** (`gpt-4o-mini`).
+- **Utilizes a LangChain prompt template** to structure queries effectively.
+- **Filters results based on similarity thresholds** to ensure high-quality and contextually accurate responses.
+
+### **Setup Instructions**
+1. **Configure environment variables**:
+   - Store your OpenAI API key and other necessary credentials in a `.env` file.
+2. **Update Pinecone index and namespace** in the notebook:
+   ```python
+   index_name = "<put your index name here which was used in rag_pinecone>"
+   namespace = "<put your namespace name here which was used in rag_pinecone>"
+   ```
+
+### **Workflow**
+1. **Define queries** in a list within the notebook.
+2. **Retrieve relevant chunks** using Pinecone’s similarity search.
+3. **Filter results** based on a similarity threshold to eliminate low-relevance data.
+4. **Generate responses** by passing the retrieved context and query to the LLM.
+
+This setup ensures accurate, context-aware responses by leveraging vector-based retrieval and OpenAI’s language model.
