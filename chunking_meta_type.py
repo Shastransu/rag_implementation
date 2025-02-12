@@ -31,9 +31,36 @@ def process_kb_articles(kb_articles):
         metadata = dict(re.findall(metadata_pattern, kb, re.DOTALL))
         
         # Updated section patterns with strict boundary detection
-        # 
-        
-        
+        sections = {
+            'Primary Information': r"\*\*Primary Information:\*\*\n(.*?)(?=\n\*\*[A-Z]|\Z)",
+            'Locations': r"\*\*Locations:\*\*\n(.*?)(?=\n\*\*[A-Z]|\Z)",
+            'Storage Services': r"\*\*Storage Services:\*\*(.*?)(?=\n\*\*|\Z)",
+            'How It Works': r"\*\*How It Works:\*\*(.*?)(?=\n\*\*|\Z)",
+            'Comparison with Standard Self-Storage': r"\*\*Comparison with Standard Self-Storage:\*\*(.*?)(?=\n\*\*|\Z)",
+            'Unit Sizes': r"\*\*Unit Sizes:\*\*(.*?)(?=\n\*\*|\Z)",
+            'Promotions': r"\*\*Promotions:\*\*(.*?)(?=\n\*\*|\Z)",
+            'FAQs': r"\*\*FAQs:\*\*(.*?)(?=\n\*\*|\Z)",
+            'Service Details': r"\*\*Service Details:\*\*(.*?)(?=\n\*\*|\Z)",
+            'About Henfield Storage': r"\*\*About Henfield Storage:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Why Choose Henfield Storage': r"\*\*Why Choose Henfield Storage\?\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Edge Cases & Handling': r"\*\*Edge Cases & Handling:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Related Topics & Links': r"\*\*Related Topics & Links:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Structured Metadata': r"\*\*Structured Metadata:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'How It Works': r"\*\*How It Works:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Service Details': r"\*\*Service Details:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Unit Sizes': r"\*\*Unit Sizes:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Promotions': r"\*\*Promotions:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Contact Information': r"\*\*Contact Information:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Help & Information': r"\*\*Help & Information:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Regional Storage Locations': r"\*\*Regional Storage Locations:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'London Area Locations': r"\*\*London Area Locations:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Services': r"\*\*Services:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Specialized Storage Solutions': r"\*\*Specialized Storage Solutions:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Social Media': r"\*\*Social Media:\*\*(.*?)(?=\n\*\*[A-Za-z]|\Z)",
+            'Unit Sizes and Descriptions': r"\*\*Unit Sizes and Descriptions:\*\*\n(.*?)(?=\n\*\*[A-Z]|\Z)",
+            'Storage 101 – Sizing Up My Unit': r"\*\*Storage 101 – Sizing Up My Unit:\*\*\n(.*?)(?=\n\*\*[A-Z]|\Z)",
+            'Getting a Quote': r"\*\*Getting a Quote:\*\*\n(.*?)(?=\n\*\*[A-Z]|\Z)"
+        }
         
         extracted_sections = {}
         for section_name, pattern in sections.items():
